@@ -9,10 +9,13 @@ const StyledMain = styled.main`
     flex-direction: column;
     align-items: center;
 
+    @media (min-width: 680px) {
+        margin: 3em auto 0;
+    }
+
     @media (min-width: 1000px) {
         width: 80%;
         max-width: 1200px;
-        margin: 3em auto 0;
         flex-direction: row;
         gap: 2em;
         align-items: stretch;

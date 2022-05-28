@@ -16,21 +16,13 @@ export const cartSlice = createSlice({
             }
         },
         removeBook: (state, action) => {
-            //TODO
-            const books = state.reduce((value, acc) => {
-                if (value.id !== action.payload) {
-                    return [...acc, value];
-                }
+            const book = state.find(({ id }) => id === action.payload.id);
 
-                if (value.quantity > 1) {
-                    value.quantity--;
-                    return [...acc, value];
-                }
+            if (book.quantity === 1) {
+                return state.filter(({ id }) => id !== action.payload.id);
+            }
 
-                return [...acc];
-            }, []);
-
-            return books;
+            book.quantity--;
         },
     },
 });

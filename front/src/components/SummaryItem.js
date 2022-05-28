@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { GoPlus } from 'react-icons/go';
 import { FaMinus } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { addBook, removeBook } from '../store/cartSlice';
 
 const StyledListItem = styled.li`
     display: flex;
@@ -60,6 +62,16 @@ const RoundBtn = styled.button`
 
 const SummaryItem = ({ book }) => {
     const { author, cover_url, price, title, quantity } = book;
+    const dispatch = useDispatch();
+
+    const handleRemove = (book) => {
+        dispatch(removeBook(book));
+    };
+
+    const handleAdd = (book) => {
+        dispatch(addBook(book));
+    };
+
     return (
         <StyledListItem>
             <img src={cover_url} alt={title} />
@@ -69,11 +81,11 @@ const SummaryItem = ({ book }) => {
                 <FlexWrapper>
                     <span>33.00 PLN</span>
                     <BtnWrapper>
-                        <RoundBtn>
+                        <RoundBtn onClick={() => handleRemove(book)}>
                             <FaMinus />
                         </RoundBtn>
                         <div>{quantity}</div>
-                        <RoundBtn orange>
+                        <RoundBtn orange onClick={() => handleAdd(book)}>
                             <GoPlus />
                         </RoundBtn>
                     </BtnWrapper>

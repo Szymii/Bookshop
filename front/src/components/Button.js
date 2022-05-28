@@ -16,6 +16,13 @@ const StyledButton = styled.button`
         border: 2px solid ${({ theme }) => theme.colors.orange};
         color: ${({ theme }) => theme.colors.white};
     }
+
+    &:disabled {
+        background-color: ${({ theme }) => theme.colors.white};
+        border: 2px solid ${({ theme }) => theme.colors.gray};
+        color: ${({ theme }) => theme.colors.gray};
+        cursor: not-allowed;
+    }
 `;
 
 const Button = ({ children, ...props }) => {
