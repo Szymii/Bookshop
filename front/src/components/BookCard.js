@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaBookOpen } from 'react-icons/fa';
 import Button from './Button';
+import { useDispatch } from 'react-redux';
+import { addBook } from '../store/cartSlice';
 
 const Wrapper = styled.div`
     display: flex;
@@ -58,9 +60,14 @@ const PageWrapper = styled.div`
 
 const BookCard = ({ book }) => {
     const { author, cover_url, currency, pages, price, title } = book;
+    const dispatch = useDispatch();
 
     const getPrice = (price) => {
         return (price / 100).toFixed(2);
+    };
+
+    const handleButtonClick = (id) => {
+        dispatch(addBook(id));
     };
 
     return (
@@ -79,11 +86,12 @@ const BookCard = ({ book }) => {
                         <span>{pages}</span>
                     </PageWrapper>
                 </BookData>
-
                 <h3>{title}</h3>
                 <p>{author}</p>
             </BookDescription>
-            <Button>Dodaj do koszyka</Button>
+            <Button onClick={() => handleButtonClick(book)}>
+                Dodaj do koszyka
+            </Button>
         </Wrapper>
     );
 };

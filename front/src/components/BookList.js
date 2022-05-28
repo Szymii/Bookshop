@@ -17,8 +17,8 @@ const BookList = () => {
 
     return (
         <StyledList>
-            {books.map(({ id, ...rest }) => (
-                <BookCard book={rest} key={id} />
+            {books.map((book) => (
+                <BookCard book={book} key={book.id} />
             ))}
         </StyledList>
     );
