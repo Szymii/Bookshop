@@ -27,10 +27,10 @@ const Navigation = () => {
     return (
         <StyledNav>
             <div>
-                <Link to="/">
+                <Link to="/books">
                     <span>Bookshop</span>
                 </Link>
-                <Link to="Cart">
+                <Link to="/cart">
                     <FaShoppingCart />
                 </Link>
             </div>

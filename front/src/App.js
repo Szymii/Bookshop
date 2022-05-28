@@ -5,7 +5,9 @@ import styled from 'styled-components';
 import Navigation from './components/Navigation';
 import Home from './views/Home';
 import Cart from './views/Cart';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 const GlobalWrapper = styled.div`
     min-height: 100vh;
@@ -14,17 +16,24 @@ const GlobalWrapper = styled.div`
 
 const App = () => {
     return (
-        <ThemeProvider theme={theme}>
-            <GlobalWrapper>
-                <BrowserRouter>
-                    <Navigation />
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/cart" element={<Cart />} />
-                    </Routes>
-                </BrowserRouter>
-            </GlobalWrapper>
-        </ThemeProvider>
+        <Provider store={store}>
+            <ThemeProvider theme={theme}>
+                <GlobalWrapper>
+                    <BrowserRouter>
+                        <Navigation />
+                        <Routes>
+                            <Route path="/books" element={<Home />} />
+                            <Route path="/books/:page" element={<Home />} />
+                            <Route path="/cart" element={<Cart />} />
+                            <Route
+                                path="*"
+                                element={<Navigate to="/books" replace />}
+                            />
+                        </Routes>
+                    </BrowserRouter>
+                </GlobalWrapper>
+            </ThemeProvider>
+        </Provider>
     );
 };
 
