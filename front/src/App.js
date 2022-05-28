@@ -12,6 +12,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 const GlobalWrapper = styled.div`
     min-height: 100vh;
     background-color: ${({ theme }) => theme.colors.lightGray};
+    padding-bottom: 4em;
 `;
 
 const App = () => {

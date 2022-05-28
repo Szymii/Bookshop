@@ -15,7 +15,7 @@ const initialState = {
     page: 1,
     records_per_page: null,
     total_records: null,
-    books: [],
+    booksList: [],
 };
 
 export const booksSlice = createSlice({
@@ -29,14 +29,14 @@ export const booksSlice = createSlice({
             return { ...state, loading: 'error' };
         });
         builder.addCase(fetchBooks.fulfilled, (state, action) => {
-            const books = action.payload.books;
+            const booksList = action.payload.books;
             const page = action.payload.metadata.page;
             const records_per_page = action.payload.metadata.records_per_page;
             const total_records = action.payload.metadata.total_records;
 
             return {
                 ...state,
-                books,
+                booksList,
                 page,
                 records_per_page,
                 total_records,
