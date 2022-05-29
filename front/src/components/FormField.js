@@ -8,7 +8,9 @@ const Wrapper = styled.div`
     }
     input {
         width: ${({ short }) => (short ? '50%' : '100%')};
-        border: 1px solid ${({ theme }) => theme.colors.black};
+        border: 1px solid
+            ${({ error, theme }) =>
+                error ? theme.colors.red : theme.colors.black};
         font-size: 1.2rem;
         padding: 0.4em 0.8em;
 
@@ -18,12 +20,12 @@ const Wrapper = styled.div`
     }
 `;
 
-const FormField = ({ label, name, short, placeholder = null }) => {
+const FormField = ({ label, short, error, ...props }) => {
     return (
-        <Wrapper short={short}>
+        <Wrapper short={short} error={error}>
             <label>
                 {label}:
-                <input name={name} placeholder={placeholder} />
+                <input {...props} />
             </label>
         </Wrapper>
     );

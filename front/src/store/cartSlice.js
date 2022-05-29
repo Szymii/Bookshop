@@ -24,7 +24,10 @@ export const cartSlice = createSlice({
 
             book.quantity--;
         },
+        removeAllBooks: (state, action) => {
+            return [];
+        },
     },
 });
 
-export const { addBook, removeBook } = cartSlice.actions;
+export const { addBook, removeBook, removeAllBooks } = cartSlice.actions;

@@ -13,13 +13,15 @@ const StyledList = styled.ul`
 
 const BookList = () => {
     const state = useSelector((state) => state);
-    const books = state.books.booksList;
+    const books = state.books;
 
     return (
         <StyledList>
-            {books.map((book) => (
-                <BookCard book={book} key={book.id} />
-            ))}
+            {books.booksList.length > 0
+                ? books.booksList.map((book) => (
+                      <BookCard book={book} key={book.id} />
+                  ))
+                : null}
         </StyledList>
     );
 };
