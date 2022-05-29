@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { fetchBooks } from '../store/booksSlice';
 import Banner from '../components/Banner';
 import BookList from '../components/BookList';
+import Pagination from '../components/Pagination';
 
 const StyledMain = styled.main`
     display: flex;
@@ -29,7 +30,7 @@ const Home = () => {
     const params = useParams();
 
     useEffect(() => {
-        //TODO validacja
+        window.scrollTo(0, 0);
         dispatch(fetchBooks(params.page || 1));
     }, [dispatch, params]);
 
@@ -39,7 +40,7 @@ const Home = () => {
             <StyledSection>
                 <BookList />
                 <hr />
-                {/*TODO <Pagination /> */}
+                <Pagination acticvePage={parseInt(params.page) || 1} />
             </StyledSection>
         </StyledMain>
     );
