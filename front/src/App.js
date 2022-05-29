@@ -8,6 +8,7 @@ import Cart from './views/Cart';
 import { Provider } from 'react-redux';
 import store from './store';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Checkout from './views/Checkout';
 
 const GlobalWrapper = styled.div`
     min-height: 100vh;
@@ -22,6 +23,7 @@ const App = () => {
                 <GlobalWrapper>
                     <BrowserRouter>
                         <Navigation />
+
                         <Routes>
                             <Route path="/books" element={<Home />} />
                             <Route path="/books/:page" element={<Home />} />
@@ -30,6 +32,7 @@ const App = () => {
                                 path="*"
                                 element={<Navigate to="/books" replace />}
                             />
+                            <Route path="/checkout" element={<Checkout />} />
                         </Routes>
                     </BrowserRouter>
                 </GlobalWrapper>

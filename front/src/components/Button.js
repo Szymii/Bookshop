@@ -11,7 +11,8 @@ const StyledButton = styled.button`
     border: 2px solid ${({ theme }) => theme.colors.black};
     cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &:focus {
         background-color: ${({ theme }) => theme.colors.orange};
         border: 2px solid ${({ theme }) => theme.colors.orange};
         color: ${({ theme }) => theme.colors.white};

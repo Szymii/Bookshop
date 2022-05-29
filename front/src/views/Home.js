@@ -29,6 +29,7 @@ const Home = () => {
     const params = useParams();
 
     useEffect(() => {
+        //TODO validacja
         dispatch(fetchBooks(params.page || 1));
     }, [dispatch, params]);
 
@@ -38,7 +39,7 @@ const Home = () => {
             <StyledSection>
                 <BookList />
                 <hr />
-                {/* <Pagination /> */}
+                {/*TODO <Pagination /> */}
             </StyledSection>
         </StyledMain>
     );

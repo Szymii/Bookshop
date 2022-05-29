@@ -4,6 +4,7 @@ import { GoPlus } from 'react-icons/go';
 import { FaMinus } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { addBook, removeBook } from '../store/cartSlice';
+import { getPrice } from '../utility';
 
 const StyledListItem = styled.li`
     display: flex;
@@ -19,6 +20,7 @@ const StyledListItem = styled.li`
         max-width: 85px;
     }
 `;
+
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -79,7 +81,7 @@ const SummaryItem = ({ book }) => {
                 <h3>{title}</h3>
                 <p>{author}</p>
                 <FlexWrapper>
-                    <span>33.00 PLN</span>
+                    <span>{getPrice(price)} PLN</span>
                     <BtnWrapper>
                         <RoundBtn onClick={() => handleRemove(book)}>
                             <FaMinus />

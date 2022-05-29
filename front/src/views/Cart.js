@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Button from '../components/Button';
 import Summary from '../components/Summary';
+import { getPrice } from '../utility';
+import { useNavigate } from 'react-router-dom';
 
 const StyledMain = styled.main`
     display: flex;
@@ -58,13 +60,14 @@ const PaymentSection = styled.section`
 
 const Wrapper = styled.div`
     max-width: 1200px;
-    padding: 2em;
     background-color: ${({ theme }) => theme.colors.white};
 
     div {
+        width: 80%;
+        margin: 0 auto;
+
         @media (min-width: 680px) {
-            width: 80%;
-            margin: 0 auto;
+            padding-top: 1.5em;
             font-size: 1.5rem;
             font-weight: 600;
         }
@@ -79,7 +82,16 @@ const ButtonWrapper = styled.div`
 
 const Cart = () => {
     const state = useSelector((state) => state);
+    const navigate = useNavigate();
     const books = state.cart;
+
+    const totalCost = books.reduce((acc, { price, quantity }) => {
+        return (acc += price * quantity);
+    }, 0);
+
+    const handleButtonClick = () => {
+        navigate('/checkout');
+    };
 
     return (
         <StyledMain>
@@ -94,9 +106,16 @@ const Cart = () => {
             </StyledSection>
             <PaymentSection>
                 <Wrapper>
-                    {books.length ? <div>Razem: 99.00 PLN</div> : null}
+                    {books.length ? (
+                        <div>Razem: {getPrice(totalCost)} PLN</div>
+                    ) : null}
                     <ButtonWrapper>
-                        <Button disabled={!books.length}>Dalej</Button>
+                        <Button
+                            disabled={!books.length}
+                            onClick={handleButtonClick}
+                        >
+                            Dalej
+                        </Button>
                     </ButtonWrapper>
                 </Wrapper>
             </PaymentSection>
