@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Button from '../components/Button';
 import FormField from '../components/FormField';
 import { removeAllBooks } from '../store/cartSlice';
+import { addInfo } from '../store/infoSlice';
 
 const StyledSection = styled.section`
     background-color: ${({ theme }) => theme.colors.white};
@@ -117,6 +118,8 @@ const Checkout = () => {
 
             if (response.status === 201) {
                 dispatch(removeAllBooks());
+                dispatch(addInfo(response.data.data.id));
+                navigate('/books');
             }
         } catch ({ response }) {
             if (response.status === 422) {

@@ -63,8 +63,9 @@ const BookCard = ({ book }) => {
     const { author, cover_url, currency, pages, price, title } = book;
     const dispatch = useDispatch();
 
-    const handleButtonClick = (id) => {
-        dispatch(addBook(id));
+    const handleButtonClick = (book, e) => {
+        e.target.blur();
+        dispatch(addBook(book));
     };
 
     return (
@@ -86,7 +87,7 @@ const BookCard = ({ book }) => {
                 <h3>{title}</h3>
                 <p>{author}</p>
             </BookDescription>
-            <Button onClick={() => handleButtonClick(book)}>
+            <Button onClick={(e) => handleButtonClick(book, e)}>
                 Dodaj do koszyka
             </Button>
         </Wrapper>

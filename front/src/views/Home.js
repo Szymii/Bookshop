@@ -6,6 +6,7 @@ import { fetchBooks } from '../store/booksSlice';
 import Banner from '../components/Banner';
 import BookList from '../components/BookList';
 import Pagination from '../components/Pagination';
+import CustomModal from '../components/CustomModal';
 
 const StyledMain = styled.main`
     display: flex;
@@ -42,6 +43,7 @@ const Home = () => {
                 <hr />
                 <Pagination acticvePage={parseInt(params.page) || 1} />
             </StyledSection>
+            <CustomModal />
         </StyledMain>
     );
 };
